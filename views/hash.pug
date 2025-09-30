@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  .container
+    h1 🔐 SHA256 #{__('Hash Calculator')}
+
+    .well#well1
+      form.form-horizontal
+        .form-group
+          label.col-sm-3.control-label(for='data', data-toggle='tooltip', title='Input any text to see its SHA256 hash') #{__('Input Data')}:
+          .col-sm-9
+            textarea#data.form-control(rows='8', placeholder='Type something here...')
+
+        .form-group
+          label.col-sm-3.control-label(for='hash', data-toggle='tooltip', title='The SHA256 hash output - always 64 hex characters') #{__('SHA256 Hash')}:
+          .col-sm-9
+            input#hash.form-control(type='text', disabled)
+
+  script.
+    function getText(block, chain) {
+      return $('#data').val();
+    }
+
+    $(function() {
+      $('#data').bind('input propertychange', function() {
+        var hash = sha256();
+        $('#hash').val(hash);
+        $('#hash').animate({opacity: 0.5}, 100).animate({opacity: 1}, 100);
+      });
+    });
+
+    $('#hash').val(sha256());

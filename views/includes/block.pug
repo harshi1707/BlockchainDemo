@@ -1,0 +1,36 @@
+.well(id='block'+block.block+'chain'+block.chain+'well')
+  .block-header
+    h4 Block ##{block.block}
+  form.form-horizontal
+
+    .form-group
+      label.col-sm-2.control-label(for='block'+block.block+'chain'+block.chain+'number', data-toggle='tooltip', title='The block number in the chain') #{__('Block')}:
+      .col-sm-10
+        .input-group
+          span.input-group-addon #
+          input.form-control(id='block'+block.block+'chain'+block.chain+'number', type='number', value=block.block)
+
+    .form-group
+      label.col-sm-2.control-label(for='block'+block.block+'chain'+block.chain+'nonce', data-toggle='tooltip', title='A number used to find a valid hash through proof-of-work') #{__('Nonce')}:
+      .col-sm-10
+         input.form-control(id='block'+block.block+'chain'+block.chain+'nonce', type='text', value=block.nonce)
+
+    .form-group
+      label.col-sm-2.control-label(for='block'+block.block+'chain'+block.chain+'data', data-toggle='tooltip', title='The data stored in this block (e.g., transactions)') #{__('Data')}:
+      .col-sm-10
+        textarea.form-control(id='block'+block.block+'chain'+block.chain+'data', rows='5', placeholder='Enter transaction data...')
+
+    #state.form-group
+      label.col-sm-2.control-label(for='block'+block.block+'chain'+block.chain+'previous', data-toggle='tooltip', title='Hash of the previous block, ensuring chain integrity') #{__('Previous Hash')}:
+      .col-sm-10
+        input.form-control(id='block'+block.block+'chain'+block.chain+'previous', type='text', value=block.previous, disabled)
+
+    #state.form-group
+      label.col-sm-2.control-label(for='block'+block.block+'chain'+block.chain+'hash', data-toggle='tooltip', title='SHA256 hash of block number + nonce + data + previous hash') #{__('Block Hash')}:
+      .col-sm-10
+        input.form-control(id='block'+block.block+'chain'+block.chain+'hash', type='text', disabled)
+
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        button.btn.btn-primary.ladda-button(id='block'+block.block+'chain'+block.chain+'mineButton', data-style='expand-right', data-toggle='tooltip', title='Find a nonce that makes the hash valid (starts with 0000)')
+          span.ladda-label #{__('Mine Block')}

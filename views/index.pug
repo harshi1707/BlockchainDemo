@@ -1,0 +1,94 @@
+extends layout
+
+block content
+  .container
+    .hero-section
+      .title-card
+        .blockchain-logo
+          .chain-link
+          .chain-link
+          .chain-link
+        h1.display-4 Blockchain Technology
+      p.lead Master the fundamentals of blockchain through interactive demonstrations and comprehensive explanations.
+
+    .explanations-section
+      .explanation-card
+        h3 🔗 What is Blockchain?
+        p Blockchain is a revolutionary distributed ledger technology that creates an immutable, decentralized database. Each block contains data and is cryptographically linked to the previous block, forming an unbreakable chain of trust that cannot be altered without consensus from the network.
+
+      .explanation-card
+        h3 ⛏️ Proof-of-Work Mining
+        p Mining is the process of finding a special number (nonce) that makes the block's hash start with a specific number of zeros. This "proof-of-work" ensures blocks are computationally expensive to create but easy to verify, preventing spam and maintaining network security.
+
+      .explanation-card
+        h3 🔐 Cryptographic Hashing
+        p SHA256 hashing transforms any input data into a unique 64-character hexadecimal string. Even a tiny change in input produces a completely different hash. This property ensures data integrity and enables the chain's immutability.
+
+      .explanation-card
+        h3 📊 Block Structure
+        p Each block contains: Block Number (index), Nonce (mining solution), Data (transactions), Previous Hash (link to prior block), and Current Hash (proof of work). The hash depends on all block contents, making tampering mathematically detectable.
+
+      .explanation-card
+        h3 🌐 Distributed Consensus
+        p Multiple network participants maintain identical copies of the blockchain. New blocks are only accepted when validated by the majority, ensuring no single entity can control or corrupt the ledger.
+
+      .explanation-card
+        h3 💰 Cryptocurrency Applications
+        p Beyond Bitcoin, blockchain enables smart contracts, decentralized finance (DeFi), non-fungible tokens (NFTs), supply chain tracking, and secure digital identity systems.
+
+      .code-example-card
+        h3 💻 Technical Implementation
+        .code-example
+          pre
+            | // Simplified Block Structure in JavaScript
+            | class Block {
+            |   constructor(index, timestamp, data, previousHash = '') {
+            |     this.index = index;
+            |     this.timestamp = timestamp;
+            |     this.data = data;
+            |     this.previousHash = previousHash;
+            |     this.hash = this.calculateHash();
+            |     this.nonce = 0;
+            |   }
+            |
+            |   calculateHash() {
+            |     return SHA256(this.index + this.timestamp +
+            |                   JSON.stringify(this.data) + this.nonce +
+            |                   this.previousHash).toString();
+            |   }
+            |
+            |   mineBlock(difficulty) {
+            |     while (this.hash.substring(0, difficulty) !== '0'.repeat(difficulty)) {
+            |       this.nonce++;
+            |       this.hash = this.calculateHash();
+            |     }
+            |   }
+            | }
+
+    .demo-section
+      h2 🎮 Interactive Demonstrations
+      p Choose from the following hands-on blockchain experiments:
+      .demo-grid
+        .demo-card
+          .demo-icon 🔐
+          h4 SHA256 Hash Calculator
+          p Experiment with cryptographic hashing. See how input changes affect output.
+          a.btn.btn-primary(href='/hash') Try Hash Demo
+
+        .demo-card
+          .demo-icon 📦
+          h4 Single Block Mining
+          p Understand block structure and the mining process.
+          a.btn.btn-primary(href='/block') Try Block Demo
+
+        .demo-card
+          .demo-icon ⛓️
+          h4 Blockchain Chain
+          p Build and mine a complete blockchain with multiple blocks.
+          a.btn.btn-primary(href='/blockchain') Try Blockchain Demo
+
+        .demo-card
+          .demo-icon 🌐
+          h4 Distributed Network
+          p Explore consensus in a multi-peer blockchain network.
+          a.btn.btn-primary(href='/distributed') Try Distributed Demo
